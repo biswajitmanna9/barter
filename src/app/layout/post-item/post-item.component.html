@@ -1,0 +1,59 @@
+<loading [state]="loading">
+  <section id="LoginForm">
+    <div class="container">
+      <div class="login-form">
+        <div class="main-div">
+          <div class="panel">
+            <img class="img-fluid img-center" src="assets/images/logo.png">
+            <h2>{{'POSTYOURITEM' | translate}}</h2>
+          </div>
+          <form id="Login" role="form" [formGroup]="form" novalidate>
+            <div class="form-group">
+              <label>{{'WHAT_ITS_CALLED' | translate}}</label>
+              <input type="text" class="form-control" placeholder="" formControlName="itemName" [ngClass]="displayFieldCss('itemName')">
+              <div class="invalid-feedback" *ngIf="isFieldValid('itemName')">
+                {{'ERR_TITLE' | translate}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label>{{'TELL_US' | translate}}</label>
+              <input type="text" class="form-control" placeholder="" formControlName="description" [ngClass]="displayFieldCss('description')">
+              <div class="invalid-feedback" *ngIf="isFieldValid('description')">
+                {{'ERR_DESC' | translate}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label>{{'WHAT_IS_CONDITION' | translate}}</label>
+              <input type="text" class="form-control" placeholder="" formControlName="condition" [ngClass]="displayFieldCss('condition')">
+              <div class="invalid-feedback" *ngIf="isFieldValid('condition')">
+                {{'ERR_CONDITION' | translate}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label>{{'UPLOAD_IMAGE' | translate}}</label>
+              <input type="file" class="form-control is-invalid" (change)="onImageChange($event)" accept="image/*" [ngClass]="{
+                  'is-invalid': file_error,
+                  'is-valid': !file_error
+                }">
+              <div class="invalid-feedback" *ngIf="file_error">
+                {{'ERR_IMAGE' | translate}}
+              </div>
+            </div>
+            <img *ngIf="base64textString" [src]="sanitizer.bypassSecurityTrustUrl(base64textString)" height="300" width="250">
+            <div class="row">
+              <div class="col-md-4">
+                <button type="submit" class="btn btn-primary" (click)="addPost()">{{'SUBMIT' | translate}}</button>
+              </div>
+              <div class="col-md-4">
+                <button type="submit" class="btn btn-primary" (click)="reSet()">{{'CLEAR' | translate}}</button>
+              </div>
+              <div class="col-md-4">
+                <button type="submit" class="btn btn-primary" (click)="back()">{{'BACK' | translate}}</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</loading>
