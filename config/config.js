@@ -44,6 +44,11 @@ app.use(cookieSession({
 
 app.set('port', port);
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // Server static files from
 // app.get('*.*', express.static(path.join(__dirname, 'dist')));
 
