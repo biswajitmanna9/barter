@@ -1,44 +1,44 @@
-<h2 mat-dialog-title>{{ 'CONVERSATION_WITH' | translate }}: {{userNamePopup}}</h2>
+<h2 class="head-line" mat-dialog-title>
+    {{ 'CONVERSATION_WITH' | translate }}: {{userNamePopup}}</h2>
 <a class="close" (click)="close()">×</a>
 <mat-dialog-content>
-  <button *ngIf="button_key" (click)='respondToBarter(conversation, post, "accept")'>{{ 'ACCEPT_BARTER' | translate }}</button>
-  <button *ngIf="button_key" (click)='respondToBarter(conversation, post, "reject")'>{{ 'REJECT_BARTER' | translate }}</button>
-  <button (click)='deleteConversation(conversation, post)'>Delete Conversation</button>
-  <div class='' *ngIf="showReturnPost">
-    <h4 style="color:#676767">{{returnItemText}}</h4>
-    <section class='post'>
-      <img style="width: 20%" [src]="getImage(returnPost_details.image)" />
-      <div class='postText' style="width:76%;">
-        <h2 id='itemName'>
-          <span class='underline '>{{ 'ITEM_NAME' | translate }}</span>: {{returnPost_details.itemName}}</h2>
-        <h2 id='description'>
-          <span class='underline'>{{ 'DESCRIPTION' | translate }}</span>: {{returnPost_details.description}}</h2>
-        <h2 id='condition'>
-          <span class='underline'>{{ 'CONDITION' | translate }}</span>: {{returnPost_details.condition}}</h2>
-        <h2 id='name'>
-          <span class='underline'>{{ 'CONTACT' | translate }}</span>: {{returnPost_details.name}}</h2>
-        <h2 id='date'>
-          <span class='underline'>{{ 'CREATED' | translate }}</span>: {{returnPost_details.createdAt| date:'MM/dd @ h:mma'}}</h2>
-      </div>
-    </section>
-  </div>
-  <div class='messageContainer' style="border-radius: 10px;">
-    <div class='messages' *ngFor='let message of conversation.messages'>
-      <p>
-        <span class='underline'>{{message.from}}</span>:
-        <span class='date'> ({{message.sentAt| date:'MM/dd @ h:mma'}})</span> {{message.message}}</p>
+    <button class="delete-btn" *ngIf="button_key" (click)='respondToBarter(conversation, post, "accept")'>{{ 'ACCEPT_BARTER' | translate }}</button>
+    <button class="delete-btn" *ngIf="button_key" (click)='respondToBarter(conversation, post, "reject")'>{{ 'REJECT_BARTER' | translate }}</button>
+    <button class="delete-btn" (click)='deleteConversation(conversation, post)'><i class="fa fa-trash" aria-hidden="true"></i> Delete Conversation</button>
+    <div class='sub-head-line' *ngIf="showReturnPost">
+        <h4>{{returnItemText}}</h4>
+        <section class='post'>
+            <img [src]="getImage(returnPost_details.image)" />
+            <div class='postText conversation-chat'>
+                <h2 id='itemName'>
+                    <span class='underline '>{{ 'ITEM_NAME' | translate }}</span>: {{returnPost_details.itemName}}</h2>
+                <h2 id='description'>
+                    <span class='underline'>{{ 'DESCRIPTION' | translate }}</span>: {{returnPost_details.description}}</h2>
+                <h2 id='condition'>
+                    <span class='underline'>{{ 'CONDITION' | translate }}</span>: {{returnPost_details.condition}}</h2>
+                <h2 id='name'>
+                    <span class='underline'>{{ 'CONTACT' | translate }}</span>: {{returnPost_details.name}}</h2>
+                <h2 id='date'>
+                    <span class='underline'>{{ 'CREATED' | translate }}</span>: {{returnPost_details.createdAt| date:'MM/dd @ h:mma'}}</h2>
+            </div>
+        </section>
     </div>
-  </div>
-  <form class="" [formGroup]="form" novalidate>
-    <div class="form-group">
-      <textarea rows="4" cols="4" class='form-control' type='text' formControlName="reply" placeholder="{{ 'TYPE_MESSAGE' | translate }}"
-        [ngClass]="displayFieldCss('reply')"></textarea>
-      <div class="invalid-feedback" *ngIf="isFieldValid('reply')">
-        please enter message
-      </div>
+    <div class='messageContainer'>
+        <div class='messages' *ngFor='let message of conversation.messages'>
+            <p>
+                <span class='underline'>{{message.from}}</span>:
+                <span class='date'> ({{message.sentAt| date:'MM/dd @ h:mma'}})</span> {{message.message}}</p>
+        </div>
     </div>
-  </form>
+    <form class="" [formGroup]="form" novalidate>
+        <div class="form-group">
+            <textarea rows="4" cols="4" class='form-control' type='text' formControlName="reply" placeholder="{{ 'TYPE_MESSAGE' | translate }}" [ngClass]="displayFieldCss('reply')"></textarea>
+            <div class="invalid-feedback" *ngIf="isFieldValid('reply')">
+                please enter message
+            </div>
+        </div>
+    </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button class="round-g-btn" (click)="onSubmit()">{{ 'SEND' | translate }}</button>
+    <button class="round-g-btn " (click)="onSubmit()">{{ 'SEND' | translate }}</button>
 </mat-dialog-actions>
