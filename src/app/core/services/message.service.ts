@@ -7,12 +7,17 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable()
 export class MessageService {
   allCookies: any;
+  cookieString: string;
   constructor(
     private http: HttpClient,
     private cookieService: CookieService
   ) {
     this.allCookies = cookieService.getAll();
-    // console.log(this.allCookies)
+
+    this.cookieString = Object.keys(this.allCookies).reduce((accumulator, cookieName) => {
+      accumulator += cookieName + '=' + this.allCookies[cookieName] + ';';
+      return accumulator;
+    }, '');
   }
 
   sendNewConversation(data) {
@@ -31,7 +36,7 @@ export class MessageService {
     return this.http.put(environment.apiEndpoint + 'barter/' + type + '/' + id, data)
   }
 
-  ratingConversation(data){
+  ratingConversation(data) {
     return this.http.post(environment.apiEndpoint + 'rating', data)
   }
 
