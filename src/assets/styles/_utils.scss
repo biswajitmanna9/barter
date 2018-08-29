@@ -42,19 +42,27 @@ li {
 }
 
 .card-sec .product-img {
-    height: 240px;
-    width: 280px;
-    margin-right: 30px;
-    display: inline-block;
+    height: 140px;
+    width: 140px;
+    display: block;
     vertical-align: top;
+    margin: 0px auto;
+    border-radius: 50%;
+    background: #464646;
+    border: 5px solid #00000038;
+}
+
+.card-sec {
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .contact-details {
     padding: 10px;
     display: inline-block;
     overflow-y: scroll;
-    height: 234px;
-    width: 67%;
+    height: 212px;
+    width: 100%;
 }
 
 .contact-details span {
@@ -63,8 +71,16 @@ li {
 }
 
 .contact-details ul li {
-    margin-bottom: 6px;
+    margin-bottom: 3px;
     font-weight: lighter;
+    text-align: center;
+    font-size: 15px;
+}
+
+.contact-details button {
+    text-align: center;
+    margin: 13px auto;
+    display: block;
 }
 
 .checked {
