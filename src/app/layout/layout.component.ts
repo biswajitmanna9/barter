@@ -16,13 +16,16 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
     this.translate.use(localStorage.getItem('lang_key'));
-    this.getLoginData();
+    // this.getLoginData();
   }
 
   getLoginData() {
     this.loginService.getLoginData().subscribe(
       res => {
         console.log(res)
+        localStorage.setItem('isLoggedin', 'true')
+        localStorage.setItem('fbId', res['fbId'])
+        localStorage.setItem('name', res['name'])
       },
       error => {
         console.log(error)

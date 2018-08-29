@@ -4,46 +4,16 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 
-let header = new Headers();
-
-
-
-
 @Injectable()
 export class PostService {
-  allCookies: any;
-  // request: HttpRequest<any>
-  cookieString: string;
-  headers: any;
   constructor(
-    private http: HttpClient,
-    private cookieService: CookieService
+    private http: HttpClient
   ) {
-
-    this.allCookies = cookieService.getAll();
-
-    this.cookieString = Object.keys(this.allCookies).reduce((accumulator, cookieName) => {
-      accumulator += cookieName + '=' + this.allCookies[cookieName] + ';';
-      return accumulator;
-    }, '');
-    // this.request = this.request.clone({
-    //   headers: this.request.headers.set('Cookie', cookieString)
-    // });
-    // console.log(this.allCookies)
-    this.headers = new HttpHeaders({
-      'Cookie': this.cookieString
-    });
   }
 
 
 
   getAllPost(data): Observable<any> {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Access-Control-Allow-Credentials': 'true'
-    //   })
-    // };
     return this.http.post(environment.apiEndpoint + 'posts', data)
   }
 

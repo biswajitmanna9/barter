@@ -6,16 +6,8 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class LoginService {
-  allCookies: any;
-  // request: HttpRequest<any>
-  cookieString: string;
   constructor(private http: HttpClient, private cookieService: CookieService) {
-    this.allCookies = cookieService.getAll();
 
-    this.cookieString = Object.keys(this.allCookies).reduce((accumulator, cookieName) => {
-      accumulator += cookieName + '=' + this.allCookies[cookieName] + ';';
-      return accumulator;
-    }, '');
   }
 
   loginWithFb(): Observable<any> {

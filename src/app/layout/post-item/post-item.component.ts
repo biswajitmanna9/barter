@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PostService } from '../../core/services/post.service';
 import { LoadingState } from '../../core/components/loading/loading.component';
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
-var resizebase64 = require('resize-base64');
+// var resizebase64 = require('resize-base64');
 // import { } from '@types/googlemaps';
 
 @Component({
@@ -26,6 +26,8 @@ export class PostItemComponent implements OnInit {
   isTracking = false;
   currentLat: any;
   currentLong: any;
+  name: string;
+  fbId: string;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -33,17 +35,19 @@ export class PostItemComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.loading = LoadingState.Processing;
+    this.name = localStorage.getItem('name')
+    this.fbId = localStorage.getItem('fbId')
     this.trackMe();
     this.form = this.formBuilder.group({
-      name: ['Hat Khod', Validators.required],
+      name: [this.name, Validators.required],
       description: ['', Validators.required],
       condition: ['', Validators.required],
       image: [this.image, Validators.required],
       itemName: ['', Validators.required],
       location: ['', Validators.required],
-      fbId: ['146727089568972', Validators.required]
+      fbId: [this.fbId, Validators.required]
     });
     this.loading = LoadingState.Ready;
   }
@@ -82,8 +86,8 @@ export class PostItemComponent implements OnInit {
     var binaryString = readerEvt.target.result;
     var base64 = 'data:image/png;base64,' + btoa(binaryString);
     this.image.dataURL = base64;
-    // this.base64textString = base64;
-    this.base64textString = resizebase64(base64, 250, 300);
+    this.base64textString = base64;
+    // this.base64textString = resizebase64(base64, 250, 300);
     this.image.resized.dataURL = this.base64textString
     console.log(this.base64textString);
     this.file_error = false;
