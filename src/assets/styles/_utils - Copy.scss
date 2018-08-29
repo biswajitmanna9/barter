@@ -44,17 +44,12 @@ li {
 .card-sec .product-img {
     height: 240px;
     width: 280px;
+    float: left;
     margin-right: 30px;
-    display: inline-block;
-    vertical-align: top;
 }
 
 .contact-details {
     padding: 10px;
-    display: inline-block;
-    overflow-y: scroll;
-    height: 234px;
-    width: 67%;
 }
 
 .contact-details span {
@@ -125,7 +120,6 @@ li {
     position: absolute;
     top: 12px;
     left: 12px;
-    cursor: pointer;
 }
 
 .edit:hover {
@@ -372,84 +366,6 @@ li {
     color: #ffffff;
 }
 
-.card-outline-secondary {
-    height: 700px;
-    overflow-y: auto;
-}
-
-
-/* width */
-
-.card-outline-secondary::-webkit-scrollbar {
-    width: 10px;
-}
-
-
-/* Track */
-
-.card-outline-secondary::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 20px;
-}
-
-
-/* Handle */
-
-.card-outline-secondary::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 20px;
-}
-
-
-/* Handle on hover */
-
-.card-outline-secondary::-webkit-scrollbar-thumb:hover {
-    background: #555;
-    border-radius: 20px;
-}
-
-
-/*for-responsive-css*/
-
-
-/* width */
-
-.contact-details::-webkit-scrollbar {
-    width: 5px;
-    height: 20px;
-}
-
-
-/* Track */
-
-.contact-details::-webkit-scrollbar-track {
-    background: #ffc107;
-    border-radius: 20px;
-}
-
-
-/* Handle */
-
-.contact-details::-webkit-scrollbar-thumb {
-    background: #ffc107;
-    border-radius: 20px;
-}
-
-
-/* Handle on hover */
-
-.contact-details::-webkit-scrollbar-thumb:hover {
-    background: #ffc107;
-    border-radius: 20px;
-}
-
-.btn-chat {
-    background: #ffa500fa;
-    border-radius: 50px 50px 50px 0;
-    color: #fff;
-    font-size: 11px;
-}
-
 .login-block .nav-link {
     background: #1e2424;
     color: #fff;
@@ -517,57 +433,6 @@ li {
 .over-lap-form {
     background: #1e2424;
     border: none;
-}
-
-.cdk-overlay-dark-backdrop {
-    background: rgba(0, 0, 0, 0.9);
-}
-
-.conversation-pop h2 {
-    font-weight: 400;
-    color: #fba71c;
-}
-
-.mat-dialog-container .head-line {
-    font-weight: 400;
-    color: #fba71c;
-}
-
-.mat-dialog-container .delete-btn {
-    background: #585858;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 13px;
-    border: none;
-    padding: 6px 15px;
-    cursor: pointer;
-}
-
-.mat-dialog-container .sub-head-line {
-    font-weight: 200;
-    color: #fba71c;
-}
-
-.mat-dialog-container img {
-    height: 100%;
-    width: 200px;
-}
-
-.conversation-chat h2 {
-    font-weight: 400;
-    font-size: 20px;
-    color: #fba71c;
-}
-
-.conversation-chat h2 span {
-    font-weight: 400;
-    font-size: 20px;
-    color: #fff;
-}
-
-.conversation-chat .messages p span {
-    font-size: 10px;
-    color: #fff;
 }
 
 

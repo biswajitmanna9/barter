@@ -1,28 +1,30 @@
-<a class="close" (click)="close()">×</a>
-<mat-dialog-content>
-  <form class="conversation_form" [formGroup]="form" novalidate>
-    <p>
-      <span class='underline'>{{ 'TO' | translate }}</span>: {{info_data.name}}</p>
-    <p>
-      <span class='underline'>{{ 'ITEM_NAME' | translate }}</span>: {{info_data.itemName}}</p>
-    <div class="form-group">
-      <label>{{ 'RETURN_ITEM' | translate }}</label>
-      <ng-select class="form-control" placeholder="{{ 'SEARCH_YOUR_POSTS' | translate }}" [clearable]="true" name="post" formControlName="post" [ngClass]="displayFieldCss('post')">
-        <ng-option *ngFor="let item of items" [value]="item._id">{{item.itemName}}</ng-option>
-      </ng-select>
-      <div class="invalid-feedback" *ngIf="isFieldValid('post')">
-        select post
-      </div>
-    </div>
-    <div class="form-group">
-      <label>{{ 'MESSAGE' | translate }}</label>
-      <input type="text" class="form-control" placeholder="{{ 'WHAT_DID_YOU_WANT_TO_SAY' | translate }}" formControlName="message" [ngClass]="displayFieldCss('message')">
-      <div class="invalid-feedback" *ngIf="isFieldValid('message')">
-        please enter message
-      </div>
-    </div>
-  </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button class="round-g-btn" (click)="onSubmit()">{{ 'SEND_MESSAGE' | translate }}</button>
-</mat-dialog-actions>
+<div class="popup-model-barter">
+    <a class="close" (click)="close()">×</a>
+    <mat-dialog-content>
+        <form class="conversation_form" [formGroup]="form" novalidate>
+            <p>
+                <span class='underline'>{{ 'TO' | translate }}</span>: {{info_data.name}}</p>
+            <p>
+                <span class='underline'>{{ 'ITEM_NAME' | translate }}</span>: {{info_data.itemName}}</p>
+            <div class="form-group">
+                <label>{{ 'RETURN_ITEM' | translate }}</label>
+                <ng-select class="form-control over-lap-form" placeholder="{{ 'SEARCH_YOUR_POSTS' | translate }}" [clearable]="true" name="post" formControlName="post" [ngClass]="displayFieldCss('post')">
+                    <ng-option *ngFor="let item of items" [value]="item._id">{{item.itemName}}</ng-option>
+                </ng-select>
+                <div class="invalid-feedback" *ngIf="isFieldValid('post')">
+                    select post
+                </div>
+            </div>
+            <div class="form-group">
+                <label>{{ 'MESSAGE' | translate }}</label>
+                <input type="text" class="form-control" placeholder="{{ 'WHAT_DID_YOU_WANT_TO_SAY' | translate }}" formControlName="message" [ngClass]="displayFieldCss('message')">
+                <div class="invalid-feedback" *ngIf="isFieldValid('message')">
+                    please enter message
+                </div>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button class="round-g-btn" (click)="onSubmit()">{{ 'SEND_MESSAGE' | translate }}</button>
+    </mat-dialog-actions>
+</div>

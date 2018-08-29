@@ -12,6 +12,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: '_', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'post-item', component: PostItemComponent },

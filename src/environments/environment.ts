@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://192.168.24.243:9001/'
+  apiEndpoint: 'https://hatwekhod.cfapps.io/'
 };

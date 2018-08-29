@@ -58,16 +58,4 @@ export class LoginComponent implements OnInit {
 
   }
 
-  // socialSignIn(socialPlatform: string) {
-  //   let socialPlatformProvider;
-  //   if (socialPlatform == "facebook") {
-  //     socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-  //   }
-  //   this.socialAuthService.signIn(socialPlatformProvider).then(
-  //     (userData) => {
-  //       console.log(socialPlatform + " sign in data : ", userData);
-  //     }
-  //   );
-  // }
-
 }
