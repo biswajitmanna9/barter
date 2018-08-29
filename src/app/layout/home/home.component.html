@@ -59,32 +59,38 @@
                     </agm-map>
                 </div>
                 <div class="card-outline-secondary my-4" *ngIf="all_post_list.length > 0">
-                    <div class="full-card-sec" *ngFor="let post of all_post_list">
-                        <div class="card-sec main-color shadow ">
-                            <a class="edit shadow " *ngIf="post.fbId == fbId" [routerLink]="['/post-item', post._id]">
-                                <i class="fa fa-pencil " aria-hidden="true "></i>
-                            </a>
-                            <img class="product-img " [src]="getImage(post.image)" />
-                            <div class="contact-details text-white ">
-                                <ul>
-                                    <li>
-                                        <span>{{ 'ITEM_NAME' | translate }}:</span> {{post.itemName}}</li>
-                                    <li>
-                                        <span>{{ 'DESCRIPTION' | translate }}:</span> {{post.description}}</li>
-                                    <li>
-                                        <span>{{ 'CONDITION' | translate }}:</span> {{post.condition}}</li>
-                                    <li>
-                                        <span>{{ 'CONTACT' | translate }}:</span> {{post.name}}</li>
-                                    <li>
-                                        <ngb-rating [(rate)]="post.user_average_score" [readonly]="true" max="5"></ngb-rating>
-                                    </li>
-                                    <li>
-                                        <span>{{ 'CREATED' | translate }}:</span> {{post.createdAt| date:'MM/dd @ h:mma'}}</li>
-                                </ul>
-                                <button type="button " class="btn btn-warning " (click)="openWindow(post._id)">{{ 'BARTER_LOC' | translate }}</button>
+                    <div class="row">
+                        <div class="full-card-sec col-md-6 " *ngFor="let post of all_post_list">
+                            <div class="card-sec main-color shadow ">
+                                <a class="edit shadow " *ngIf="post.fbId == fbId" [routerLink]="['/post-item', post._id]">
+                                    <i class="fa fa-pencil " aria-hidden="true "></i>
+                                </a>
+                                <img class="product-img " [src]="getImage(post.image)" />
+                                <div class="contact-details text-white ">
+                                    <ul>
+                                        <li>
+                                            <span>{{ 'ITEM_NAME' | translate }}:</span> {{post.itemName}}</li>
+                                        <li>
+                                            <span>{{ 'DESCRIPTION' | translate }}:</span> {{post.description}}</li>
+                                        <li>
+                                            <span>{{ 'CONDITION' | translate }}:</span> {{post.condition}}</li>
+                                        <li>
+                                            <span>{{ 'CONTACT' | translate }}:</span> {{post.name}}</li>
+                                        <li>
+                                            <ngb-rating [(rate)]="post.user_average_score" [readonly]="true" max="5"></ngb-rating>
+                                        </li>
+                                        <li>
+                                            <span>{{ 'CREATED' | translate }}:</span> {{post.createdAt| date:'MM/dd @ h:mma'}}</li>
+                                    </ul>
+                                    <button type="button " class="btn btn-warning " (click)="openWindow(post._id)">{{ 'BARTER_LOC' | translate }}</button>
+                                </div>
+                                <div class="clearfix "></div>
                             </div>
-                            <div class="clearfix "></div>
+
                         </div>
+
+
+
                     </div>
                 </div>
             </div>
