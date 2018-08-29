@@ -37,6 +37,8 @@ export class EditPostComponent implements OnInit {
     location: [],
     image: ''
   };
+  name: string;
+  fbId: string;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -47,15 +49,17 @@ export class EditPostComponent implements OnInit {
 
   ngOnInit() {
     this.loading = LoadingState.Processing;
+    this.name = localStorage.getItem('name')
+    this.fbId = localStorage.getItem('fbId')
     this.trackMe();
     this.form = this.formBuilder.group({
-      name: ['Hat Khod', Validators.required],
+      name: [this.name, Validators.required],
       description: ['', Validators.required],
       condition: ['', Validators.required],
       image: [this.image, Validators.required],
       itemName: ['', Validators.required],
       location: ['', Validators.required],
-      fbId: ['146727089568972', Validators.required]
+      fbId: [this.fbId, Validators.required]
     });
     console.log(this.route.snapshot.params['id'])
     this.getPostDetails(this.route.snapshot.params['id'])
@@ -67,8 +71,8 @@ export class EditPostComponent implements OnInit {
         console.log(res);
         this.postDetails = {
           post_id: this.route.snapshot.params['id'],
-          fbId: '146727089568972',
-          name: 'Hat Khod',
+          fbId: this.fbId,
+          name: this.name,
           itemName: res['itemName'],
           condition: res['condition'],
           description: res['description'],

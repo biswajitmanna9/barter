@@ -26,6 +26,8 @@ export class PostItemComponent implements OnInit {
   isTracking = false;
   currentLat: any;
   currentLong: any;
+  name: string;
+  fbId: string;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -33,17 +35,19 @@ export class PostItemComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.loading = LoadingState.Processing;
+    this.name = localStorage.getItem('name')
+    this.fbId = localStorage.getItem('fbId')
     this.trackMe();
     this.form = this.formBuilder.group({
-      name: ['Hat Khod', Validators.required],
+      name: [this.name, Validators.required],
       description: ['', Validators.required],
       condition: ['', Validators.required],
       image: [this.image, Validators.required],
       itemName: ['', Validators.required],
       location: ['', Validators.required],
-      fbId: ['146727089568972', Validators.required]
+      fbId: [this.fbId, Validators.required]
     });
     this.loading = LoadingState.Ready;
   }

@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   all_post_list: any = [];
   search_key: string;
   items: any = [];
+  name: string;
   fbId: string;
   loading: LoadingState = LoadingState.NotReady;
   post_list: any = [];
@@ -29,7 +30,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.loading = LoadingState.Processing;
-    this.fbId = '146727089568972';
+    this.name = localStorage.getItem('name')
+    this.fbId = localStorage.getItem('fbId')
     this.getPostList();
   }
 
@@ -116,7 +118,7 @@ export class DashboardComponent implements OnInit {
   toggleConversationModal(conversation, post) {
     let dialogRef = this.dialog.open(ViewConversationComponent, {
       width: '700px',
-      data: { conversation: conversation, post: post, fbId: this.fbId, user_name: "Hat Khod" }
+      data: { conversation: conversation, post: post, fbId: this.fbId, user_name: this.name }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result)
@@ -159,7 +161,7 @@ export class DashboardComponent implements OnInit {
   toggleRatingModal(conversation, post) {
     let dialogRef = this.dialog.open(ConversationRatingComponent, {
       width: '700px',
-      data: { conversation: conversation, post: post, fbId: this.fbId, user_name: "Hat Khod" }
+      data: { conversation: conversation, post: post, fbId: this.fbId, user_name: this.name }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result)

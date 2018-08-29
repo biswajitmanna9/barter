@@ -36,13 +36,20 @@ export class HeaderComponent implements OnInit {
     this.loginService.logout().subscribe(
       res => {
         console.log(res)
+        localStorage.removeItem('isLoggedin')
+        localStorage.removeItem('fbId')
+        localStorage.removeItem('name')
+        this.router.navigate(['/login']);
       },
       error => {
         console.log(error)
+        localStorage.removeItem('isLoggedin')
+        localStorage.removeItem('fbId')
+        localStorage.removeItem('name')
+        this.router.navigate(['/login']);
       }
     )
-    localStorage.removeItem('isLoggedin');
-    this.router.navigate(['/login']);
+
   }
 
 }

@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   offsets = [];
   openedWindow: number = 0;
   closeResult: string;
+  name: string;
   fbId: string;
   constructor(
     private postService: PostService,
@@ -36,7 +37,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loading = LoadingState.Processing;
-    this.fbId = '146727089568972';
+    this.name = localStorage.getItem('name')
+    this.fbId = localStorage.getItem('fbId')
     this.getPostList();
   }
 

@@ -38,36 +38,4 @@ export class LoginComponent implements OnInit {
 
   }
 
-
-  loginWithFb() {
-    localStorage.setItem('isLoggedin', 'true')
-    this.router.navigate(['/home']);
-    // this.loginService.loginWithFb().subscribe(
-    //   res => {
-    //     console.log(res)
-    //     localStorage.setItem('isLoggedin', 'true')
-    //     this.router.navigate(['/home']);
-    //   },
-    //   error => {
-    //     console.log(error)
-    //     localStorage.setItem('isLoggedin', 'true')
-    //     window.location.href = error['url'];
-    //     // this.router.navigate(['/home']);
-    //   }
-    // )
-
-  }
-
-  // socialSignIn(socialPlatform: string) {
-  //   let socialPlatformProvider;
-  //   if (socialPlatform == "facebook") {
-  //     socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-  //   }
-  //   this.socialAuthService.signIn(socialPlatformProvider).then(
-  //     (userData) => {
-  //       console.log(socialPlatform + " sign in data : ", userData);
-  //     }
-  //   );
-  // }
-
 }
