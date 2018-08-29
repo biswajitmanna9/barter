@@ -5,7 +5,7 @@ import { PostService } from '../../core/services/post.service';
 import { LoadingState } from '../../core/components/loading/loading.component';
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
 // var resizebase64 = require('resize-base64');
-// import { } from '@types/googlemaps';
+import { } from '@types/googlemaps';
 
 @Component({
   selector: 'app-post-item',
