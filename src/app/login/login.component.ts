@@ -40,21 +40,21 @@ export class LoginComponent implements OnInit {
 
 
   loginWithFb() {
-    localStorage.setItem('isLoggedin', 'true')
-    this.router.navigate(['/home']);
-    // this.loginService.loginWithFb().subscribe(
-    //   res => {
-    //     console.log(res)
-    //     localStorage.setItem('isLoggedin', 'true')
-    //     this.router.navigate(['/home']);
-    //   },
-    //   error => {
-    //     console.log(error)
-    //     localStorage.setItem('isLoggedin', 'true')
-    //     window.location.href = error['url'];
-    //     // this.router.navigate(['/home']);
-    //   }
-    // )
+    // localStorage.setItem('isLoggedin', 'true')
+    // this.router.navigate(['/home']);
+    this.loginService.loginWithFb().subscribe(
+      res => {
+        console.log(res)
+        localStorage.setItem('isLoggedin', 'true')
+        this.router.navigate(['/home']);
+      },
+      error => {
+        console.log(error)
+        localStorage.setItem('isLoggedin', 'true')
+        window.location.href = error['url'];
+        // this.router.navigate(['/home']);
+      }
+    )
 
   }
 
