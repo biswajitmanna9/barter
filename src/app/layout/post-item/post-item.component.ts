@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PostService } from '../../core/services/post.service';
 import { LoadingState } from '../../core/components/loading/loading.component';
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
-// var resizebase64 = require('resize-base64');
+var resizebase64 = require('resize-base64');
 // import { } from '@types/googlemaps';
 
 @Component({
@@ -82,8 +82,8 @@ export class PostItemComponent implements OnInit {
     var binaryString = readerEvt.target.result;
     var base64 = 'data:image/png;base64,' + btoa(binaryString);
     this.image.dataURL = base64;
-    this.base64textString = base64;
-    // this.base64textString = resizebase64(base64, 250, 300);
+    // this.base64textString = base64;
+    this.base64textString = resizebase64(base64, 250, 300);
     this.image.resized.dataURL = this.base64textString
     console.log(this.base64textString);
     this.file_error = false;
