@@ -8,27 +8,28 @@ export class AuthGuard implements CanActivate {
 
   constructor(private router: Router, private loginService: LoginService) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    this.loginService.getLoginData().subscribe(
-      res => {
-        console.log(res)
-        if (res['fbId'] != undefined) {
-          localStorage.setItem('isLoggedin', 'true')
-          localStorage.setItem('fbId', res['fbId'])
-          localStorage.setItem('name', res['name'])
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if (localStorage.getItem('isLoggedin')) {
+      return true
+    }
+    else {
+      this.loginService.getLoginData().subscribe(
+        res => {
+          console.log(res)
+          if (res['fbId'] != undefined) {
+            localStorage.setItem('isLoggedin', 'true')
+            localStorage.setItem('fbId', res['fbId'])
+            localStorage.setItem('name', res['name'])
+            this.router.navigate(['/home']);
+            return false;
+          }
+        },
+        error => {
+          console.log(error)
+          this.router.navigate(['/login']);
+          return false;
         }
-        if (localStorage.getItem('isLoggedin')) {
-          return Observable.of(true);
-        }
-      },
-      error => {
-        console.log(error)
-        this.router.navigate(['/login']);
-        return Observable.of(false);
-      }
-    )
-
-    this.router.navigate(['/login']);
-    return Observable.of(false);
+      )
+    }
   }
 }
