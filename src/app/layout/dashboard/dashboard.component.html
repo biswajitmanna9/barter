@@ -21,63 +21,63 @@
                 </div>
             </div>
             <div class="col-lg-9">
-                <h4 style="margin: 20px 0 0 0;">{{post_type}}</h4>
+                <h4 class="mt-xl-5">{{post_type}}</h4>
                 <div class="card-outline-secondary my-4" *ngIf="all_post_list.length > 0">
+
                     <div class="row">
-                        <div class="col-md-6">
 
-                            <div class="full-card-sec" *ngFor="let post of all_post_list">
-                                <div class="card-sec main-color shadow ">
-                                    <a class="edit shadow " (click)="deletePost(post._id)">
-                                        <i class="fa fa-trash-o" aria-hidden="true "></i>
-                                    </a>
-                                    <img class="product-img " [src]="getImage(post.image)" />
-                                    <div class="contact-details text-white ">
-                                        <ul>
-                                            <li>
-                                                <span>{{ 'ITEM_NAME' | translate }}:</span> {{post.itemName}}</li>
-                                            <li>
-                                                <span>{{ 'DESCRIPTION' | translate }}:</span> {{post.description}}</li>
-                                            <li>
-                                                <span>{{ 'CONDITION' | translate }}:</span> {{post.condition}}</li>
-                                            <li>
-                                                <span>{{ 'CONTACT' | translate }}:</span> {{post.name}}</li>
-                                            <li>
-                                                <ngb-rating [(rate)]="post.user_average_score" [readonly]="true" max="5"></ngb-rating>
-                                            </li>
-                                            <li>
-                                                <span>{{ 'CREATED' | translate }}:</span> {{post.createdAt| date:'MM/dd @ h:mma'}}</li>
-                                        </ul>
-                                        <div class='conversation' *ngFor="let conversation of post.conversations">
-                                            <hr/>
-                                            <div style="margin:10px 0px;">
-                                                <div *ngIf="post.fbId == fbId">
-                                                    <span class='underline'>{{ 'CONVERSATION_WITH' | translate }}</span>: {{conversation.requestingUser.name}}
-                                                </div>
-                                                <div *ngIf="post.fbId != fbId">
-                                                    <span class='underline'>{{ 'CONVERSATION_WITH' | translate }}</span>: {{post.name}}
+                        <div class="full-card-sec col-md-6" *ngFor="let post of all_post_list">
+                            <div class="card-sec main-color shadow ">
+                                <a class="edit shadow " (click)="deletePost(post._id)">
+                                    <i class="fa fa-trash-o" aria-hidden="true "></i>
+                                </a>
+                                <img class="product-img " [src]="getImage(post.image)" />
+                                <div class="contact-details text-white ">
+                                    <ul>
+                                        <li>
+                                            <span>{{ 'ITEM_NAME' | translate }}:</span> {{post.itemName}}</li>
+                                        <li>
+                                            <span>{{ 'DESCRIPTION' | translate }}:</span> {{post.description}}</li>
+                                        <li>
+                                            <span>{{ 'CONDITION' | translate }}:</span> {{post.condition}}</li>
+                                        <li>
+                                            <span>{{ 'CONTACT' | translate }}:</span> {{post.name}}</li>
+                                        <li>
+                                            <ngb-rating [(rate)]="post.user_average_score" [readonly]="true" max="5"></ngb-rating>
+                                        </li>
+                                        <li>
+                                            <span>{{ 'CREATED' | translate }}:</span> {{post.createdAt| date:'MM/dd @ h:mma'}}</li>
+                                    </ul>
+                                    <div class='conversation' *ngFor="let conversation of post.conversations">
+                                        <hr/>
+                                        <div style="margin:10px 0px;">
+                                            <div *ngIf="post.fbId == fbId">
+                                                <span class='underline'>{{ 'CONVERSATION_WITH' | translate }}</span>: {{conversation.requestingUser.name}}
+                                            </div>
+                                            <div *ngIf="post.fbId != fbId">
+                                                <span class='underline'>{{ 'CONVERSATION_WITH' | translate }}</span>: {{post.name}}
 
 
-                                                </div>
-                                                <!-- 
+                                            </div>
+                                            <!-- 
                                         <img *ngIf='post.completed && conversation.accepted' class='thumb' src='assets/images/thumbs-up.png' />
 
                                         <img *ngIf='conversation.accepted == false' class='thumb' src='assets/images/thumbs-down.png' /> -->
 
-                                            </div>
-                                            <i *ngIf='conversation.accepted == false' class="fa fa-thumbs-down thumb" aria-hidden="true"></i>
-                                            <i *ngIf='post.completed && conversation.accepted' class="fa fa-thumbs-up thumb" aria-hidden="true"></i>
-                                            <button class="btn btn-chat" (click)='toggleConversationModal(conversation, post)'>{{ 'CONVERSATION_VIEW' | translate }}</button>
-                                            <button *ngIf="post_type == 'Completed Posts' && (fbId == post.fbId || fbId == conversation.requestingUser.fbId) && ((fbId == post.fbId && post.requester_barter_rating == 0) || (fbId == conversation.requestingUser.fbId && post.poster_barter_rating == 0))"
-                                                (click)='toggleRatingModal(conversation, post)'>{{ 'GIVE_RATING' | translate }}</button>
-                                            <ngb-rating [rate]="getRatingValue(post)" [readonly]="true" max="5" *ngIf="post_type == 'Completed Posts' && (fbId == post.fbId || fbId == conversation.requestingUser.fbId) && ((fbId == post.fbId && post.requester_barter_rating != 0) || (fbId == conversation.requestingUser.fbId && post.poster_barter_rating != 0))"></ngb-rating>
                                         </div>
+                                        <i *ngIf='conversation.accepted == false' class="fa fa-thumbs-down thumb" aria-hidden="true"></i>
+                                        <i *ngIf='post.completed && conversation.accepted' class="fa fa-thumbs-up thumb" aria-hidden="true"></i>
+                                        <button class="btn btn-chat" (click)='toggleConversationModal(conversation, post)'>{{ 'CONVERSATION_VIEW' | translate }}</button>
+                                        <button *ngIf="post_type == 'Completed Posts' && (fbId == post.fbId || fbId == conversation.requestingUser.fbId) && ((fbId == post.fbId && post.requester_barter_rating == 0) || (fbId == conversation.requestingUser.fbId && post.poster_barter_rating == 0))"
+                                            (click)='toggleRatingModal(conversation, post)'>{{ 'GIVE_RATING' | translate }}</button>
+                                        <ngb-rating [rate]="getRatingValue(post)" [readonly]="true" max="5" *ngIf="post_type == 'Completed Posts' && (fbId == post.fbId || fbId == conversation.requestingUser.fbId) && ((fbId == post.fbId && post.requester_barter_rating != 0) || (fbId == conversation.requestingUser.fbId && post.poster_barter_rating != 0))"></ngb-rating>
                                     </div>
-                                    <div class="clearfix "></div>
                                 </div>
+                                <div class="clearfix "></div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

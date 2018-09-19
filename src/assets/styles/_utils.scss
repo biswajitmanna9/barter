@@ -140,7 +140,7 @@ li {
     line-height: 30px;
     position: absolute;
     top: 12px;
-    left: 12px;
+    left: 25px;
     cursor: pointer;
 }
 
@@ -391,6 +391,7 @@ li {
 .card-outline-secondary {
     height: 700px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 
@@ -464,6 +465,9 @@ li {
     border-radius: 50px 50px 50px 0;
     color: #fff;
     font-size: 11px;
+    text-align: left;
+    margin: 0;
+    display: inline-block;
 }
 
 .login-block .nav-link {
@@ -542,6 +546,23 @@ li {
 .conversation-pop h2 {
     font-weight: 400;
     color: #fba71c;
+    font-size: 12px;
+}
+
+.mat-dialog-container .post img {
+    height: 140px;
+    width: 140px;
+    display: block;
+    vertical-align: top;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: #464646;
+    border: 5px solid #00000038;
+}
+
+.sub-head-line h4 {
+    font-size: 16px;
+    line-height: 32px;
 }
 
 .mat-dialog-container .head-line {
@@ -571,14 +592,21 @@ li {
 
 .conversation-chat h2 {
     font-weight: 400;
-    font-size: 20px;
+    font-size: 14px;
     color: #fba71c;
 }
 
 .conversation-chat h2 span {
     font-weight: 400;
-    font-size: 20px;
     color: #fff;
+}
+
+.conversation-chat textarea {
+    height: 60px;
+}
+
+.conversation-chat {
+    text-align: center;
 }
 
 .conversation-chat .messages p span {
