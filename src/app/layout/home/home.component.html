@@ -1,7 +1,7 @@
 <loading [state]="loading">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 main-color shadow min-height-700">
+            <div class="col-lg-3 main-color shadow min-height-700   pull-right">
                 <img class="img-fluid img-center" src="assets/images/logo.png">
                 <h1 class="text-white text-center text-size-20">{{'TAKE_LOOK' | translate}}</h1>
                 <div class="search-sec">
@@ -17,7 +17,7 @@
                     <button type="button" class="btn btn-secondary full-btn" *ngIf="fb_friends" (click)="toggleFbPostList()"> {{'ALL_POSTS' | translate}} </button>
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 pull-left">
                 <div class="card mt-4 ">
                     <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
 
