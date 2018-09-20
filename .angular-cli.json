@@ -24,7 +24,8 @@
     "scripts": [
       "../node_modules/jquery/dist/jquery.min.js",
       "../node_modules/bootstrap/dist/js/bootstrap.min.js",
-      "../node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"
+      "../node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js",
+      "assets/js/oms.min.js"
     ],
     "environmentSource": "environments/environment.ts",
     "environments": {

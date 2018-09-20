@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { PostService } from "../../core/services/post.service";
 import { LoadingState } from '../../core/components/loading/loading.component';
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
 import { MouseEvent } from '@agm/core';
 import { } from '@types/googlemaps';
 declare let google: any
+declare let OverlappingMarkerSpiderfier: any
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ConversationComponent } from '../../core/components/conversation/conversation.component';
-import OverlappingMarkerSpiderfier from 'overlapping-marker-spiderfier';
+// import { OverlappingMarkerSpiderfier } from 'overlapping-marker-spiderfier';
 
 @Component({
   selector: 'app-home',
@@ -33,11 +34,11 @@ export class HomeComponent implements OnInit {
   options = {
     markersWontMove: true,
     markersWontHide: true,
-    nudgeRadius: 0.5,
-    minNudgeZoomLevel: 6,
+    basicFormatEvents: true
   };
-  oms: OverlappingMarkerSpiderfier;
+  oms: any;
   map: any;
+  iw: any;
   locations = [
     { lat: -31.563910, lng: 147.154312 },
     { lat: -31.563910, lng: 147.154312 },
@@ -65,6 +66,7 @@ export class HomeComponent implements OnInit {
     { lat: -42.735258, lng: 147.438000 },
     { lat: -43.999792, lng: 170.463352 }
   ]
+  @ViewChild('map') mapRef: ElementRef;
   constructor(
     private postService: PostService,
     private _sanitizer: DomSanitizer,
@@ -74,18 +76,27 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    var latlng = google.maps.LatLng(39.305, -76.617);
-    this.map = google.maps.Map(document.getElementById('map'), {
-      center: latlng,
-      zoom: 12
+    var latlng = new google.maps.LatLng(5, 0);
+    this.map = new google.maps.Map(this.mapRef.nativeElement, {
+      zoom: 6,
+      center: latlng
     });
+    
     this.loading = LoadingState.Processing;
     this.name = localStorage.getItem('name')
     this.fbId = localStorage.getItem('fbId')
     this.getPostList();
     this.oms = new OverlappingMarkerSpiderfier(this.map, this.options)
+    this.iw = new google.maps.InfoWindow();
+    this.oms.addListener('click', function(marker, event) {
+      this.iw.setContent(marker.desc);
+      this.iw.open(this.map, marker);
+    });
+    this.oms.addListener('spiderfy', function(markers) {
+      this.iw.close();
+    });
     for (let i = 0; i < this.locations.length; i++) {
-      const marker = google.maps.Marker({
+      const marker = new google.maps.Marker({
         position: this.locations[i],
         map: this.map
       });
