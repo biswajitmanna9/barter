@@ -1,7 +1,7 @@
 var db = require('./config/database'),
         passport = require('passport'),
         FacebookStrategy = require('passport-facebook').Strategy,
-        FbUsers = require('./models/facebook').FbUsers,
+        FbUsers = require('./app/models/facebook').FbUsers,
         app = require('./config/config')(passport);
 
 require('./config/passport')(passport, FacebookStrategy, FbUsers);
