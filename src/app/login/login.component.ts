@@ -26,6 +26,11 @@ export class LoginComponent implements OnInit {
     this.translate.use(localStorage.getItem('lang_key'));
   }
 
+  login() {
+    localStorage.setItem('isLoggedin', 'true')
+    this.router.navigate(['/home']);
+  }
+
   useLanguage() {
     if (localStorage.getItem('lang_key') == "en") {
       localStorage.setItem('lang_key', 'ar');

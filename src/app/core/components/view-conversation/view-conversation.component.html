@@ -25,9 +25,9 @@
     </div>
     <div class='messageContainer'>
         <div class='messages' *ngFor='let message of conversation.messages'>
-            <p>
-                <span class='underline'>{{message.from}}</span>:
-                <span class='date'> ({{message.sentAt| date:'MM/dd @ h:mma'}})</span> {{message.message}}</p>
+
+            <span class='underline'>{{message.from}}</span>:
+            <p> <span class='date'> ({{message.sentAt| date:'MM/dd @ h:mma'}})</span> {{message.message}}</p>
         </div>
     </div>
     <form class="" [formGroup]="form" novalidate>
