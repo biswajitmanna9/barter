@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { AgmCoreModule } from '@agm/core';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { NgSelectModule } from '@ng-select/ng-select';
 //===========================services===============================//
 import { PostService } from './services/post.service';
@@ -68,6 +69,7 @@ export function httpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
       apiKey: 'AIzaSyB3FKbaqonmY-bDPanbzJSH9U7HXF8dpS4'
       // apiKey: 'AIzaSyAvcDy5ZYc2ujCS6TTtI3RYX5QmuoV8Ffw'
     }),
+    AgmJsMarkerClustererModule,
     NgSelectModule,
     //----------------Material----------------//
     MatAutocompleteModule, MatButtonModule, MatButtonToggleModule,
@@ -90,6 +92,7 @@ export function httpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   ],
   exports: [
     NgbModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
@@ -100,6 +103,7 @@ export function httpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     LeftPanelComponent,
     LoadingComponent,
     AgmCoreModule,
+    AgmJsMarkerClustererModule,
     NgSelectModule,
     //----------------Material----------------//
     MatAutocompleteModule, MatButtonModule, MatButtonToggleModule,

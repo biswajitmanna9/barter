@@ -1,99 +1,104 @@
 <loading [state]="loading">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 main-color shadow min-height-700">
-                <img class="img-fluid img-center" src="assets/images/logo.png">
-                <h1 class="text-white text-center text-size-20">{{'TAKE_LOOK' | translate}}</h1>
-                <div class="search-sec">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="{{'SEARCH_IN' | translate}} {{items.length}} {{'POSTS' | translate}}" [(ngModel)]="search_key" (keyup)="search(search_key)">
-                    </div>
-                    <button type="button" class="btn btn-secondary half-btn" (click)="searchNearby()">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 main-color shadow min-height-700">
+        <img class="img-fluid img-center" src="assets/images/logo.png">
+        <h1 class="text-white text-center text-size-20">{{'TAKE_LOOK' | translate}}</h1>
+        <div class="search-sec">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="{{'SEARCH_IN' | translate}} {{items.length}} {{'POSTS' | translate}}"
+              [(ngModel)]="search_key" (keyup)="search(search_key)">
+          </div>
+          <button type="button" class="btn btn-secondary half-btn" (click)="searchNearby()">
             <i class="fa fa-map-marker" aria-hidden="true"></i> {{'SEARCH_NEARBY' | translate}}</button>
-                    <button type="button" class="btn btn-secondary half-btn" [routerLink]="['/post-item']">
+          <button type="button" class="btn btn-secondary half-btn" [routerLink]="['/post-item']">
             <i class="fa fa-cloud-upload" aria-hidden="true"></i> {{'POST_ITEM' | translate}}</button>
-                    <button type="button" class="btn btn-secondary full-btn" *ngIf="!fb_friends" (click)="toggleFbPostList()">
+          <button type="button" class="btn btn-secondary full-btn" *ngIf="!fb_friends" (click)="toggleFbPostList()">
             <i class="fa fa-facebook" aria-hidden="true"></i> {{'POSTS_FB_FRIENDS' | translate}} </button>
-                    <button type="button" class="btn btn-secondary full-btn" *ngIf="fb_friends" (click)="toggleFbPostList()"> {{'ALL_POSTS' | translate}} </button>
-                </div>
-            </div>
-            <div class="col-lg-9">
-                <div class="card mt-4 ">
-                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+          <button type="button" class="btn btn-secondary full-btn" *ngIf="fb_friends" (click)="toggleFbPostList()">
+            {{'ALL_POSTS' | translate}} </button>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="card mt-4 ">
+            <div id="map"></div>
+          <!-- <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+            <agm-marker-cluster imagePath="assets/images/m" averageCenter="true" minimumClusterSize="2">
+              <agm-marker *ngFor="let m of items; let i = index" (markerClick)="openWindow(m._id)" [latitude]="m.loc.coordinates[1]"
+                [longitude]="m.loc.coordinates[0]">
 
-                        <agm-marker *ngFor="let m of items; let i = index" (markerClick)="openWindow(m._id)" [latitude]="m.loc.coordinates[1] + offsets[i].lat" [longitude]="m.loc.coordinates[0] + offsets[i].lon">
-
-                            <agm-info-window [isOpen]="isInfoWindowOpen(m._id)" [latitude]="m.loc.coordinates[1] + offsets[i].lat" [longitude]="m.loc.coordinates[0] + offsets[i].lon">
-                                <div class="infobox">
-                                    <div class="imgBarterDiv">
-                                        <img class="imgBarter" [src]="getImage(m.image)" />
-
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <h2 id="itemName">
-                                                <span>{{ 'ITEM_NAME' | translate }}:</span> {{m.itemName}}</h2>
-                                        </li>
-                                        <li>
-                                            <h2 id="description">
-                                                <span>{{ 'DESCRIPTION' | translate }}:</span> {{m.description}}</h2>
-                                        </li>
-                                        <li>
-                                            <h2 id="condition">
-                                                <span>{{ 'CONDITION' | translate }}:</span> {{m.condition}}</h2>
-                                        </li>
-                                        <li>
-                                            <h2 id="name">
-                                                <span>{{ 'CONTACT' | translate }}:</span> {{m.name}}</h2>
-                                        </li>
-                                    </ul>
-
-                                    <!-- <h2 id="fbId">{{m.fbId}}</h2>
-                  <h2 id="_id">{{m._id}}</h2> -->
-                                    <button id="barterButton" (click)="openConversation(m)" *ngIf="m.fbId != fbId">{{ 'TITLE' | translate }}</button>
-                                </div>
-                            </agm-info-window>
-
-                        </agm-marker>
-
-                    </agm-map>
-                </div>
-                <div class="card-outline-secondary my-4" *ngIf="all_post_list.length > 0">
-                    <div class="row">
-                        <div class="full-card-sec col-md-6 " *ngFor="let post of all_post_list">
-                            <div class="card-sec main-color shadow ">
-                                <a class="edit shadow " *ngIf="post.fbId == fbId" [routerLink]="['/post-item', post._id]">
-                                    <i class="fa fa-pencil " aria-hidden="true "></i>
-                                </a>
-                                <img class="product-img " [src]="getImage(post.image)" />
-                                <div class="contact-details text-white ">
-                                    <ul>
-                                        <li>
-                                            <span>{{ 'ITEM_NAME' | translate }}:</span> {{post.itemName}}</li>
-                                        <li>
-                                            <span>{{ 'DESCRIPTION' | translate }}:</span> {{post.description}}</li>
-                                        <li>
-                                            <span>{{ 'CONDITION' | translate }}:</span> {{post.condition}}</li>
-                                        <li>
-                                            <span>{{ 'CONTACT' | translate }}:</span> {{post.name}}</li>
-                                        <li>
-                                            <ngb-rating [(rate)]="post.user_average_score" [readonly]="true" max="5"></ngb-rating>
-                                        </li>
-                                        <li>
-                                            <span>{{ 'CREATED' | translate }}:</span> {{post.createdAt| date:'MM/dd @ h:mma'}}</li>
-                                    </ul>
-                                    <button type="button " class="btn btn-warning " (click)="openWindow(post._id)">{{ 'BARTER_LOC' | translate }}</button>
-                                </div>
-                                <div class="clearfix "></div>
-                            </div>
-
-                        </div>
-
-
+                <agm-info-window [isOpen]="isInfoWindowOpen(m._id)" [latitude]="m.loc.coordinates[1]"
+                  [longitude]="m.loc.coordinates[0]">
+                  <div class="infobox">
+                    <div class="imgBarterDiv">
+                      <img class="imgBarter" [src]="getImage(m.image)" />
 
                     </div>
-                </div>
-            </div>
+                    <ul>
+                      <li>
+                        <h2 id="itemName">
+                          <span>{{ 'ITEM_NAME' | translate }}:</span> {{m.itemName}}</h2>
+                      </li>
+                      <li>
+                        <h2 id="description">
+                          <span>{{ 'DESCRIPTION' | translate }}:</span> {{m.description}}</h2>
+                      </li>
+                      <li>
+                        <h2 id="condition">
+                          <span>{{ 'CONDITION' | translate }}:</span> {{m.condition}}</h2>
+                      </li>
+                      <li>
+                        <h2 id="name">
+                          <span>{{ 'CONTACT' | translate }}:</span> {{m.name}}</h2>
+                      </li>
+                    </ul>
+                    <button id="barterButton" (click)="openConversation(m)" *ngIf="m.fbId != fbId">{{ 'TITLE' |
+                      translate
+                      }}</button>
+                  </div>
+                </agm-info-window>
+
+              </agm-marker>
+            </agm-marker-cluster>
+          </agm-map> -->
         </div>
+        <div class="card-outline-secondary my-4" *ngIf="all_post_list.length > 0">
+          <div class="row">
+            <div class="full-card-sec col-md-6 " *ngFor="let post of all_post_list">
+              <div class="card-sec main-color shadow ">
+                <a class="edit shadow " *ngIf="post.fbId == fbId" [routerLink]="['/post-item', post._id]">
+                  <i class="fa fa-pencil " aria-hidden="true "></i>
+                </a>
+                <img class="product-img " [src]="getImage(post.image)" />
+                <div class="contact-details text-white ">
+                  <ul>
+                    <li>
+                      <span>{{ 'ITEM_NAME' | translate }}:</span> {{post.itemName}}</li>
+                    <li>
+                      <span>{{ 'DESCRIPTION' | translate }}:</span> {{post.description}}</li>
+                    <li>
+                      <span>{{ 'CONDITION' | translate }}:</span> {{post.condition}}</li>
+                    <li>
+                      <span>{{ 'CONTACT' | translate }}:</span> {{post.name}}</li>
+                    <li>
+                      <ngb-rating [(rate)]="post.user_average_score" [readonly]="true" max="5"></ngb-rating>
+                    </li>
+                    <li>
+                      <span>{{ 'CREATED' | translate }}:</span> {{post.createdAt| date:'MM/dd @ h:mma'}}</li>
+                  </ul>
+                  <button type="button " class="btn btn-warning " (click)="openWindow(post._id)">{{ 'BARTER_LOC' |
+                    translate }}</button>
+                </div>
+                <div class="clearfix "></div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </loading>

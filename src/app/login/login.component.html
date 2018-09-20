@@ -13,8 +13,10 @@
           <li>3. {{'FIND_ITEM' | translate}}</li>
         </ul>
         <h2>&nbsp;</h2>
-        <a type="button" class="btn btn-primary facebook-login" href='/auth/facebook'>
+        <a type="button" class="btn btn-primary facebook-login" (click)="login()">
           <i class="fa fa-facebook" aria-hidden="true"></i> {{'LOGIN_FB' | translate}}</a>
+        <!-- <a type="button" class="btn btn-primary facebook-login" href='/auth/facebook'>
+          <i class="fa fa-facebook" aria-hidden="true"></i> {{'LOGIN_FB' | translate}}</a> -->
       </div>
       <div class="col-md-8 banner-sec">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

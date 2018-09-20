@@ -13,23 +13,25 @@ export class AuthGuard implements CanActivate {
       return true
     }
     else {
-      this.loginService.getLoginData().subscribe(
-        res => {
-          console.log(res)
-          if (res['fbId'] != undefined) {
-            localStorage.setItem('isLoggedin', 'true')
-            localStorage.setItem('fbId', res['fbId'])
-            localStorage.setItem('name', res['name'])
-            this.router.navigate(['/home']);
-            return false;
-          }
-        },
-        error => {
-          console.log(error)
-          this.router.navigate(['/login']);
-          return false;
-        }
-      )
+      this.router.navigate(['/login']);
+      return false;
+      // this.loginService.getLoginData().subscribe(
+      //   res => {
+      //     console.log(res)
+      //     if (res['fbId'] != undefined) {
+      //       localStorage.setItem('isLoggedin', 'true')
+      //       localStorage.setItem('fbId', res['fbId'])
+      //       localStorage.setItem('name', res['name'])
+      //       this.router.navigate(['/home']);
+      //       return false;
+      //     }
+      //   },
+      //   error => {
+      //     console.log(error)
+      //     this.router.navigate(['/login']);
+      //     return false;
+      //   }
+      // )
     }
   }
 }
