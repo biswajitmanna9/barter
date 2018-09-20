@@ -1,15 +1,16 @@
 <div class="col-lg-3 main-color shadow min-height-700">
-  <img class="img-fluid img-center" src="assets/images/logo.png">
-  <h1 class="text-white text-center text-size-20">{{'TAKE_LOOK' | translate}}</h1>
-  <div class="search-sec">
-    <div class="form-group">
-      <input type="password" class="form-control" placeholder="{{'SEARCH_IN' | translate}} 20 {{'POSTS' | translate}}">
-    </div>
-    <button type="button" class="btn btn-secondary half-btn">
+    <a class="navbar-brand" [routerLink]="['']">
+        <img class="img-fluid img-center" src="assets/images/logo.png"></a>
+    <h1 class="text-white text-center text-size-20">{{'TAKE_LOOK' | translate}}</h1>
+    <div class="search-sec">
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="{{'SEARCH_IN' | translate}} 20 {{'POSTS' | translate}}">
+        </div>
+        <button type="button" class="btn btn-secondary half-btn">
       <i class="fa fa-map-marker" aria-hidden="true"></i> {{'SEARCH_NEARBY' | translate}}</button>
-    <button type="button" class="btn btn-secondary half-btn">
+        <button type="button" class="btn btn-secondary half-btn">
       <i class="fa fa-cloud-upload" aria-hidden="true"></i> {{'POST_ITEM' | translate}}</button>
-    <button type="button" class="btn btn-secondary full-btn">
+        <button type="button" class="btn btn-secondary full-btn">
       <i class="fa fa-facebook" aria-hidden="true"></i> {{'POSTS_FB_FRIENDS' | translate}} </button>
-  </div>
+    </div>
 </div>

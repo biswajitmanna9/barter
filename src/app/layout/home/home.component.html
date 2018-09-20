@@ -1,7 +1,7 @@
 <loading [state]="loading">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3 main-color shadow min-height-700">
+      <div class="col-lg-3 main-color shadow min-height-700   pull-right">
         <img class="img-fluid img-center" src="assets/images/logo.png">
         <h1 class="text-white text-center text-size-20">{{'TAKE_LOOK' | translate}}</h1>
         <div class="search-sec">
@@ -19,16 +19,15 @@
             {{'ALL_POSTS' | translate}} </button>
         </div>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-9 pull-left">
         <div class="card mt-4 ">
-            <div id="map"></div>
-          <!-- <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
             <agm-marker-cluster imagePath="assets/images/m" averageCenter="true" minimumClusterSize="2">
-              <agm-marker *ngFor="let m of items; let i = index" (markerClick)="openWindow(m._id)" [latitude]="m.loc.coordinates[1]"
-                [longitude]="m.loc.coordinates[0]">
+              <agm-marker *ngFor="let m of items; let i = index" (markerClick)="openWindow(m._id)" [latitude]="m.loc.coordinates[1] + offsets[i].lat"
+                [longitude]="m.loc.coordinates[0] + offsets[i].lon">
 
-                <agm-info-window [isOpen]="isInfoWindowOpen(m._id)" [latitude]="m.loc.coordinates[1]"
-                  [longitude]="m.loc.coordinates[0]">
+                <agm-info-window [isOpen]="isInfoWindowOpen(m._id)" [latitude]="m.loc.coordinates[1] + offsets[i].lat"
+                  [longitude]="m.loc.coordinates[0] + offsets[i].lon">
                   <div class="infobox">
                     <div class="imgBarterDiv">
                       <img class="imgBarter" [src]="getImage(m.image)" />
@@ -52,15 +51,39 @@
                           <span>{{ 'CONTACT' | translate }}:</span> {{m.name}}</h2>
                       </li>
                     </ul>
-                    <button id="barterButton" (click)="openConversation(m)" *ngIf="m.fbId != fbId">{{ 'TITLE' |
-                      translate
-                      }}</button>
-                  </div>
-                </agm-info-window>
 
+                    <agm-info-window [isOpen]="isInfoWindowOpen(m._id)" [latitude]="m.loc.coordinates[1]" [longitude]="m.loc.coordinates[0]">
+                      <div class="infobox">
+                        <div class="imgBarterDiv">
+                          <img class="imgBarter" [src]="getImage(m.image)" />
+
+                        </div>
+                        <ul>
+                          <li>
+                            <h2 id="itemName">
+                              <span>{{ 'ITEM_NAME' | translate }}:</span> {{m.itemName}}</h2>
+                          </li>
+                          <li>
+                            <h2 id="description">
+                              <span>{{ 'DESCRIPTION' | translate }}:</span> {{m.description}}</h2>
+                          </li>
+                          <li>
+                            <h2 id="condition">
+                              <span>{{ 'CONDITION' | translate }}:</span> {{m.condition}}</h2>
+                          </li>
+                          <li>
+                            <h2 id="name">
+                              <span>{{ 'CONTACT' | translate }}:</span> {{m.name}}</h2>
+                          </li>
+                        </ul>
+                        <button id="barterButton" (click)="openConversation(m)" *ngIf="m.fbId != fbId">{{ 'TITLE' |
+                          translate
+                          }}</button>
+                      </div>
+                    </agm-info-window>
               </agm-marker>
             </agm-marker-cluster>
-          </agm-map> -->
+          </agm-map>
         </div>
         <div class="card-outline-secondary my-4" *ngIf="all_post_list.length > 0">
           <div class="row">
